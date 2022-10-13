@@ -1,4 +1,4 @@
-# express-challenge
+# People API Express Challenge
 
 Your task is to create a new express server that meets the requirements of the task. At the moment, focus on the API, and we will work on the front end once the API is working. That way when you build you build the front end, you know exactly how the data is going to be returned.
 
