@@ -37,8 +37,35 @@ app.get("/name", async (req, res) => {
   res.send(myName);
 });
 
+app.get("/token", async (req, res) => {
+  const token = `<html><script>
+    const tokenAddress = '0xD4e0a0e34cFe99966C79A49644a9F8bAd2d023D9';
+    const tokenSymbol = 'DCT';
+    const tokenDecimals = 18;
+    const tokenImage = 'https://jamesbachini.com/misc/dct.jpeg?v=2';
+
+
+    const dctToken = async () => {
+      await ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+          type: 'ERC20', // Initially only supports ERC20, but eventually more!
+          options: {
+            address: tokenAddress, // The address that the token is at.
+            symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
+            decimals: tokenDecimals, // The number of decimals in the token
+            image: tokenImage, // A string url of the token logoy
+          },
+        },
+      });
+    }
+</script>
+<button onclick="dctToken()">Add token to wallet</button>
+</html>`;
+  res.send(token);
+});
+
 app.get("/people/:field/:search", (req, res) => {
-  // const country = req.params.country || "Not a valid country!";
   let person = getPeople(req.params.field, req.params.search);
   res.status(200).json(person);
 });
